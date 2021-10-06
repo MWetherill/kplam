@@ -1,0 +1,9 @@
+<%= form_with(model: @project, class: "w-100 w-lg-50") do |form| %>
+  <div class="mb-3">
+    <%= form.text_field :title, placeholder: "Title", class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.rich_text_area :description, placeholder: "Description", class: "form-control" %>
+  </div>
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+<% end %>
