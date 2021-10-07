@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
 
   def index
-    @projects = Project.all
+    @projects = Project.all.order(updated_at: :DESC)
   end
 
   def show
@@ -13,12 +13,20 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
+    # option 1
+    @project = current_user.projects.new(project_params)
+    # option 2
+    # @project = Project.new(project_params)
+    # @project.user = current_user
+    # or
+    # @project.user_id = current_user.id
+
 
     if @project.save
-       redirect_to @project, notice: "Project was successfully created." 
+       flash[:success] = "New project created."
+       redirect_to @project
     else
-      flash.now[:error] = "Unable to create new project."
+      flash.now[:danger] = "Unable to create new project."
       render :new
     end
   end
@@ -53,5 +61,5 @@ private
   end
 
   def project_params
-    params.require(:project).permit(:title, :description)
+    params.require(:project).permit(:title, :description, :user_id)
   end

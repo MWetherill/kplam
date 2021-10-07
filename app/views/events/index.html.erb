@@ -1,0 +1,18 @@
+<div class="loop-container container py-5">
+  <h1 class="mb-5">Events</h1>
+  <div class="d-flex flex-row flex-wrap justify-content-around align-items-center mb-5">
+    <% @events.each do |event| %>
+      <%= link_to(event, class: "card-container text-decoration-none text-black mb-2")  do %>
+        <div class="card">
+          <div class="card-body text-center">
+            <h4 class="card-title text-decoration-none text-black mb-2"><%= event.title %></h4>
+            <p class="mb-0"><%= created_by(event.user_id) %></p>
+            <p class="mb-0"><%= created_at(event) %></p>
+            <p class="mb-0"><%= updated_at(event) %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= link_to "New Event", new_event_path, class: "btn btn-primary" %>
+</div>
