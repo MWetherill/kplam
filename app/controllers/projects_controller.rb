@@ -6,6 +6,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @tasks = @project.tasks.order(created_at: :ASC)
+    @task = @tasks.new
   end
 
   def new

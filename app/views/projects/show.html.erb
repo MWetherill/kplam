@@ -1,14 +1,26 @@
 <div class="container py-5">
   <h1 class="mb-4"><%= @project.title %></h1>
   <h6 class="mb-2"><%= created_by(@project.user_id) %></h6>
-  <p class="mb-5"><%= created_at(@project) %></p>
-  <hr>
-  <br>
+  <p class="mb-2"><%= created_at(@project) %></p>
+  <p class="mb-5"><%= updated_at(@project) %></p>
+  <h3>About</h3>
   <div class="mb-5"><%= @project.description %></div>
   <div class="mb-3">
-  <%= link_to 'Edit', edit_project_path, class: "btn btn-primary" %>
-  <%= link_to "Delete", @project, class: "btn btn-danger", method: :delete, data:
+  <%= link_to 'Edit Project', edit_project_path, class: "btn btn-primary" %>
+  <%= link_to "Delete Project", @project, class: "btn btn-danger", method: :delete, data:
     { confirm: "Are you sure?" } %>
   </div>
-  <%= link_to 'Back to projects', projects_path %>
+  <%= link_to 'Back to projects', projects_path, class: "mb-5" %>
+  <hr>
+  <h3 class="mb-4">Tasks</h3>
+  <ul class="mb-5">
+  <% @tasks.all.each do |task| %>
+    <%= render partial: 'tasks/form', locals: {project: nil, task: task} %>
+  <% end %>
+  </ul>
+  <hr>
+  <h3 class="mb-4">Add a task</h3>
+  <div class="task-form-container">
+    <%= render partial: 'tasks/form', locals: {project: @project, task: @task} %>
+  </div>
 </div>

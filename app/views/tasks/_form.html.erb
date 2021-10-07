@@ -1,0 +1,14 @@
+<%= form_with(model: [project, task].compact) do |form| %>
+  <div class="task-form mb-3 d-flex flex-row justify-content-start align-items-center">
+    <% if task.persisted? %>
+      <%= form.check_box :completed, :onclick => "this.form.submit()", class: "task-check-box-input form-check-input mx-3" %>
+    <% end %>
+    <%= form.text_field :text, placeholder: "Add new task...", class: "task-check-box-label form-control me-4" %>
+    <% if task.persisted? %>
+      <%= form.submit "Update", class: "btn btn-primary me-3" %>
+      <%= link_to ('<i class="fa fa-times"></i>').html_safe, task, method: :delete %>
+    <% else %>
+      <%= form.submit "Add", class: "btn btn-success" %>
+    <% end %>
+  </div>
+<% end %>
