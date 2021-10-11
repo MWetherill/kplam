@@ -1,0 +1,20 @@
+<div class="container py-5">
+  <h1 class="mb-4"><%= @post.title %></h1>
+  <h6 class="mb-2"><%= created_by(@post.user_id) %></h6>
+  <p class="mb-2"><%= created_at(@post) %></p>
+  <p class="mb-5"><%= updated_at(@post) %></p>
+  <h3>About</h3>
+  <div class="mb-5"><%= @post.description %></div>
+  <h3>Languages</h3>
+  <ul class="mb-5">
+    <% @post.languages.each do |language| %>
+      <li><%= link_to language.title, language_path(language), class: "text-decoration-none" %></li>
+    <% end %>
+  </ul>
+  <div class="mb-3">
+  <%= link_to 'Edit Post', edit_post_path, class: "btn btn-primary" %>
+  <%= link_to "Delete Post", @post, class: "btn btn-danger", method: :delete, data:
+    { confirm: "Are you sure?" } %>
+  </div>
+  <%= link_to 'Back to Posts', posts_path, class: "mb-5" %>
+</div>

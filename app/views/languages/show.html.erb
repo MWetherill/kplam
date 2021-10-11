@@ -1,0 +1,39 @@
+<div class="container py-5">
+  <h1 class="mb-5"><%= @language.title %></h1>
+
+  <hr>
+
+  <h3 class="mb-5">Projects</h3>
+  <div class="d-flex flex-row flex-wrap justify-content-around align-items-center mb-5">
+    <% @projects.each do |project| %>
+      <%= link_to(project, class: "card-container text-decoration-none text-black mb-2")  do %>
+        <div class="card">
+          <div class="card-body text-center">
+            <h4 class="card-title text-decoration-none text-black mb-2"><%= project.title %></h4>
+            <p class="mb-0"><%= created_by(project.user_id) %></p>
+            <p class="mb-0"><%= created_at(project) %></p>
+            <p class="mb-0"><%= updated_at(project) %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <h3 class="mb-5">Posts</h3>
+  <div class="d-flex flex-row flex-wrap justify-content-around align-items-center mb-5">
+    <% @posts.each do |post| %>
+      <%= link_to(post, class: "card-container text-decoration-none text-black mb-2")  do %>
+        <div class="card">
+          <div class="card-body text-center">
+            <h4 class="card-title text-decoration-none text-black mb-2"><%= post.title %></h4>
+            <p class="mb-0"><%= created_by(post.user_id) %></p>
+            <p class="mb-0"><%= created_at(post) %></p>
+            <p class="mb-0"><%= updated_at(post) %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

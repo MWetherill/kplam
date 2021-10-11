@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_104850) do
+ActiveRecord::Schema.define(version: 2021_10_11_144410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,34 @@ ActiveRecord::Schema.define(version: 2021_10_07_104850) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "languages", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_languages", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "language_id"
+    t.integer "post_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "project_languages", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "language_id"
+    t.integer "project_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
@@ -94,6 +122,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_104850) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "users"
+  add_foreign_key "posts", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "projects"
 end

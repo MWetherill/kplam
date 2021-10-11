@@ -1,4 +1,4 @@
-<%= form_with(model: @project, class: "w-100 w-lg-50") do |form| %>
+<%= form_with(model: @post, class: "w-100 w-lg-50") do |form| %>
   <div class="mb-3">
     <%= form.text_field :title, placeholder: "Title", class: "form-control" %>
   </div>
@@ -21,5 +21,5 @@
       </div>
     <% end %>
   </div>
-  <%= form.submit "Submit", class: "btn btn-success" %>
+  <%= form.submit "Submit", class: "btn btn-primary" %>
 <% end %>

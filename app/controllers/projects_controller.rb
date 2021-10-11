@@ -54,7 +54,6 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
   
-end
 
 private
 
@@ -63,5 +62,7 @@ private
   end
 
   def project_params
-    params.require(:project).permit(:title, :description, :user_id)
+    params.require(:project).permit(:title, :description, :user_id, language_ids:[])
   end
+  
+end

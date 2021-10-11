@@ -5,6 +5,12 @@
   <p class="mb-5"><%= updated_at(@project) %></p>
   <h3>About</h3>
   <div class="mb-5"><%= @project.description %></div>
+  <h3>Languages</h3>
+  <ul class="mb-5">
+    <% @project.languages.each do |language| %>
+      <li><%= link_to language.title, language_path(language), class: "text-decoration-none" %></li>
+    <% end %>
+  </ul>
   <div class="mb-3">
   <%= link_to 'Edit Project', edit_project_path, class: "btn btn-primary" %>
   <%= link_to "Delete Project", @project, class: "btn btn-danger", method: :delete, data:
