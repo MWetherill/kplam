@@ -6,3 +6,67 @@
 .nav-spacer {
   border-left: 2px solid grey;
 }
+
+.username-nav {
+  color: black!important;
+  font-weight: bold!important;
+}
+
+.nav-vertical-line {
+  border-left: 3px solid black;
+}
+
+.loop-container {
+  .card {
+    width: 24.5%;
+    height: 400px;
+    box-shadow: 2px 2px 5px 0px rgba(110,110,110,0.72);
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(110,110,110,0.72);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(110,110,110,0.72);
+    .card-title {
+      font-size: 1.8rem;
+
+    }
+    .card-created-by {
+      font-size: 1.1rem;
+    }
+    .card-created-on, .card-updated-on {
+      font-size: 0.75rem;
+    }
+    .card-button {
+      padding: 10px 30px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s ease-in-out;
+    }
+  }
+  .project-card {
+    background-color: #f7941e;
+    color: black;
+    .card-button {
+      border: 2px solid black;
+      color: black;
+      &:hover {
+        background-color: black;
+        color: #f7941e;
+      }
+    }
+  }
+  .post-card {
+    background-color: black;
+    color: #f7941e;
+    .card-created-by {
+      .username-nav {
+        color: #f7941e!important;
+      }
+    }
+    .card-button {
+      border: 2px solid #f7941e;
+      color: #f7941e;
+      &:hover {
+        background-color: #f7941e;
+        color: black;
+      }
+    }
+  }
+}

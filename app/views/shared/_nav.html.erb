@@ -5,31 +5,31 @@
   </button>
   <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <li class="nav-item d-flex align-items-center">
         <%= link_to "Home", root_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item d-flex align-items-center">
         <%= link_to "Projects", projects_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item d-flex align-items-center">
         <%= link_to "Posts", posts_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item d-flex align-items-center">
         <%= link_to "Languages", languages_path, class: 'nav-link' %>
       </li>
       <% if user_signed_in? %>
-        <li class="nav-item ms-3">
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, 
-          class: "nav-link btn btn-danger text-white" %>
+        <li class="nav-item d-flex align-items-center ms-3">
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link btn btn-danger text-white" %>
         </li>
-        <p class="mb-0 ms-3 d-flex align-items-center"><strong><%= current_user.username %></strong></p>
+        <div class="nav-vertical-line ms-3"></div>
+        <%= link_to current_user.username, user_path(current_user), class: "username-nav mb-0 ms-3 d-flex align-items-center text-decoration-none" %>
+        <a href="<%= user_path(current_user) %>"><%= image_tag displayed_image(current_user.image), loading: "lazy", alt: current_user.username, class: "profile-picture-nav d-flex align-items-center ms-2" %></a>
       <% else %>
-        <li class="nav-item ms-3">
+        <li class="nav-item d-flex align-items-center ms-3">
           <%= link_to "Sign in", new_user_session_path, class: "nav-link btn btn-success text-white" %>
         </li>
-        <li class="nav-item ms-3">
-          <%= link_to "Sign up", new_user_registration_path, 
-          class: "nav-link btn btn-success text-white" %>
+        <li class="nav-item d-flex align-items-center ms-3">
+          <%= link_to "Sign up", new_user_registration_path, class: "nav-link btn btn-success text-white" %>
         </li>
       <% end %>
     </ul>

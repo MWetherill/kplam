@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :set_project, only: %i[ show edit update destroy ]
   def index
-    @projects = Project.all.first(4)
-    @posts = Post.all.first(4)
+    @projects = Project.all.order(updated_at: :desc).first(4)
+    @posts = Post.all.order(updated_at: :desc).first(4)
   end
 
   private

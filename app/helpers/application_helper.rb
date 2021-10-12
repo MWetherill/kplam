@@ -13,7 +13,7 @@ module ApplicationHelper
     type
   end
 
-  def created_by(id)
-    "Created by " + User.find(id).username
+  def created_by(user)
+    sanitize "Created By: " +  content_tag(:a, user.username, class: 'username-nav text-decoration-none', href: user_path(user))
   end
 end
