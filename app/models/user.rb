@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :projects
   has_many :events
   has_many :posts
+  has_many :comments
   has_one_attached :image
   
 end

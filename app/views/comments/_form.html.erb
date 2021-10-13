@@ -1,0 +1,21 @@
+<%= form_with(model: [post, comment].compact, class: "w-100") do |form| %>
+  <div class="comment-form mb-3 d-flex flex-column justify-content-start align-items-start">
+    <% if comment.persisted? %>
+      <% if comment.deleted_at == nil %>
+        <%= form.text_area :text, class: "task-check-box-label form-control me-4 mb-3 w-100" %>
+        <div class="d-flex flex-row justifty-content-start align-items-center">
+        <%= form.submit "Update", class: "btn btn-primary me-3" %>
+        <%= link_to "Delete", comment, method: :delete, class: "btn btn-danger" %>
+        </div>
+      <% else %>
+        <div class="d-flex flex-column justify-content-start align-items-start">
+          <p class="comment-deleted"><strong>[ Comment Deleted ]</strong></p>
+          <%= link_to "Undo", comment_recover_path(comment), method: :patch, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= form.text_area :text, placeholder: "Add new comment...", class: "task-check-box-label form-control me-4 mb-3 w-100" %>
+      <%= form.submit "Add", class: "btn btn-success" %>
+    <% end %>
+  </div>
+<% end %>

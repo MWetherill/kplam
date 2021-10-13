@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :tasks, shallow: true
   end
   resources :events
-  resources :posts
+  resources :posts do
+    resources :comments, shallow: true do
+      patch 'recover'
+    end
+  end
   resources :languages
 end

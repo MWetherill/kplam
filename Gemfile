@@ -35,6 +35,8 @@ gem 'devise'
 # font awesome
 gem "font-awesome-rails"
 
+gem 'acts_as_paranoid', '~> 0.7.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

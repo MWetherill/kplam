@@ -8,6 +8,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @comments = @post.comments.with_deleted.persisted.order(created_at: :ASC)
+    @comment = @post.comments.new(user: current_user)
   end
 
   # GET /posts/new

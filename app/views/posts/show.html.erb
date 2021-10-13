@@ -3,18 +3,53 @@
   <h6 class="mb-2"><%= created_by(@post.user) %></h6>
   <p class="mb-2"><%= created_at(@post) %></p>
   <p class="mb-5"><%= updated_at(@post) %></p>
-  <h3>About</h3>
-  <div class="mb-5"><%= @post.description %></div>
+  
   <h3>Languages</h3>
   <ul class="mb-5">
     <% @post.languages.each do |language| %>
       <li><%= link_to language.title, language_path(language), class: "text-decoration-none" %></li>
     <% end %>
   </ul>
-  <div class="mb-3">
-  <%= link_to 'Edit Post', edit_post_path, class: "btn btn-primary" %>
-  <%= link_to "Delete Post", @post, class: "btn btn-danger", method: :delete, data:
-    { confirm: "Are you sure?" } %>
-  </div>
+
+  <h3>About</h3>
+  <div class="mb-5"><%= @post.description %></div>
+
+  <% if @post.user == current_user %>
+    <div class="mb-3">
+    <%= link_to 'Edit Post', edit_post_path, class: "btn btn-primary" %>
+    <%= link_to "Delete Post", @post, class: "btn btn-danger", method: :delete, data:
+      { confirm: "Are you sure?" } %>
+    </div>
+  <% end %>
   <%= link_to 'Back to Posts', posts_path, class: "mb-5" %>
+  <hr>
+  <h3 class="my-4">Comments</h3>
+  <hr>
+  
+  <% @comments.each do |comment| %>
+    <div class="d-flex flex-column justify-content-start align-items-start pt-3">
+      <div class="d-flex flex-row justify-content-start align-items-center mb-3">
+        <a href="<%= user_path(current_user) %>"><%= image_tag displayed_image(comment.user.image), loading: "lazy", alt: comment.user.username, class: "profile-picture-comment d-flex align-items-center me-2" %></a>
+        <h6 class="mb-1"><%= link_to comment.user.username, user_path(comment.user), class: "username-comment text-decoration-none me-2" %></h6>
+        <% if comment.created_at == comment.updated_at %>
+        <div class="comment-line ps-2 mb-1">
+          <%= created_at(comment) %>  
+        </div>
+        <% else %>
+        <div class="comment-line ps-2 mb-1">
+          <%= created_at(comment) %> <span class="comment-edited ms-2 mb-1">[ EDITED ]</span>
+        </div>
+        <% end %>
+      </div>
+      <% if comment.user == current_user %>
+        <%= render partial: 'comments/form', locals: {post: nil, comment: comment} %>
+      <% else %>
+      <p><%= comment.text %></p>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+
+  <h3 class="my-4">Add a new comment...</h3>
+  <%= render partial: 'comments/form', locals: {post: @post, comment: @comment} %>
 </div>

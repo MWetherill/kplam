@@ -1,0 +1,20 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.comment-line {
+  border-left: 2px solid black;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.comment-edited {
+  font-size: 0.65rem;
+  font-style: italic;
+  color: red;
+  font-weight: bold;
+}
+
+.comment-deleted {
+  color: red;
+}
