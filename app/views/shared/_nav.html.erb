@@ -17,6 +17,11 @@
       <li class="nav-item d-flex align-items-center">
         <%= link_to "Languages", languages_path, class: 'nav-link' %>
       </li>
+      <!--
+      <li class="nav-item d-flex align-items-center">
+        <%= link_to "custom action", custom_action_path, remote: true, class: 'nav-link' %>
+      </li>
+      -->
       <% if user_signed_in? %>
         <li class="nav-item d-flex align-items-center ms-3">
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link btn btn-danger text-white" %>

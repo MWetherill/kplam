@@ -6,6 +6,12 @@ class PagesController < ApplicationController
     @posts = Post.all.order(updated_at: :desc).first(4)
   end
 
+  def custom_action
+    p 'hello world'
+    @title = Project.all.first.title
+    # redirect_to root_url, notice: 'custom action successful'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
