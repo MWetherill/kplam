@@ -3,7 +3,7 @@ module UsersHelper
     if image.attached?
       image
     else
-      "/assets/dummy-prof.png"
+      "/public/dummy-prof.png"
     end
   end
 end
